@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>EvenTable</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar__logo">
+            <img src="logo.png" alt="">EvenTable
+        </div>
+        <div class="sidebar__menu">
+            <div class="sidebar__category sidebar__events">Wydarzenia</div>
+            <div class="sidebar__item sidebar__all">
+                <i data-feather="menu"></i>
+                Wszystkie
+            </div>
+            <div class="sidebar__item sidebar__coming-events">
+                <i data-feather="bookmark"></i>
+                Nadchodzące
+            </div>
+            <div class="sidebar__item sidebar__missed-events">
+                <i data-feather="archive"></i>
+                Minione
+            </div>
+            <div class="sidebar__button sidebar__add-event">
+                <i data-feather="plus"></i>
+                Dodaj wydarzenie
+            </div>
+            <div class="sidebar__separator"></div>
+            <div class="sidebar__item sidebar__rules">
+                <i data-feather="book"></i>
+                Regulamin
+            </div>
+            <div class="sidebar__item sidebar__about">
+                <i data-feather="help-circle"></i>
+                O nas
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="main__box">
+            <div class="main__header">Nadchodzące wydarzenia</div>
+            <div class="main__content">
+                <div class="events">
+                    <div class="events__header">
+                        <div class="events__header__date">Data</div>
+                        <div class="events__header__title">Tytuł</div>
+                        <div class="events__header__category">Kategoria</div>
+                    </div>
+                    <div class="event">
+                        <div class="event__datetime">
+                            <div class="event__date">Dzisiaj</div>
+                            <div class="event__time">19:50</div>
+                        </div>
+                        <div class="event__title">
+                            Zrobić projekcik z Narzędzi Internetowych
+                        </div>
+                        <div class="event__category">
+                            <div class="event__category__box" style="background-color: #129934;">
+                                Programowanie
+                            </div>
+                        </div>
+                        <div class="event__delete">
+                            <i data-feather="x"></i>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="event__datetime">
+                            <div class="event__date">Jutro</div>
+                            <div class="event__time">14:30</div>
+                        </div>
+                        <div class="event__title">
+                            Zadzwonić do babci :)
+                        </div>
+                        <div class="event__category">
+                            <div class="event__category__box" style="background-color: #CC6666;">
+                                Babciowanie
+                            </div>
+                        </div>
+                        <div class="event__delete">
+                            <i data-feather="x"></i>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="event__datetime">
+                            <div class="event__date">11 marca</div>
+                            <div class="event__time">13:00</div>
+                        </div>
+                        <div class="event__title">
+                            Dopisać dużo długich wydarzeń, takich na dwie linijki, albo i więcej.
+                            <br>Patrz na tą linijkę :O<br>
+                        </div>
+                        <div class="event__category">
+                            <div class="event__category__box">
+                                Bez kategorii
+                            </div>
+                        </div>
+                        <div class="event__delete">
+                            <i data-feather="x"></i>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="event__datetime">
+                            <div class="event__date">15 marca</div>
+                            <div class="event__time">16:30</div>
+                        </div>
+                        <div class="event__title">
+                            Dopisać jakiegoś JSa, a daty to i tak losowe są
+                        </div>
+                        <div class="event__category">
+                            <div class="event__category__box" style="background-color: #129934;">
+                                Programowanie
+                            </div>
+                        </div>
+                        <div class="event__delete">
+                            <i data-feather="x"></i>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="event__datetime">
+                            <div class="event__date">21 marca</div>
+                            <div class="event__time">19:45</div>
+                        </div>
+                        <div class="event__title">
+                           Dodać sortowanie/filtrowanie po kategoriach
+                        </div>
+                        <div class="event__category">
+                            <div class="event__category__box" style="background-color: #129934;">
+                                Programowanie
+                            </div>
+                        </div>
+                        <div class="event__delete">
+                            <i data-feather="x"></i>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="event__datetime">
+                            <div class="event__date">10 kwietnia</div>
+                            <div class="event__time">21:37</div>
+                        </div>
+                        <div class="event__title">
+                            Nie mam już pomysłów
+                        </div>
+                        <div class="event__category">
+                            <div class="event__category__box">
+                                Bez kategorii
+                            </div>
+                        </div>
+                        <div class="event__delete">
+                            <i data-feather="x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+
+    <script>
+        feather.replace({ class: 'icon', width: 20, height: 20, stroke: '#A2A2A2' });
+    </script>
+</body>
+</html>
