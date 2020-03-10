@@ -17,46 +17,67 @@
         </div>
         <div class="sidebar__menu">
             <div class="sidebar__category sidebar__events">Wydarzenia</div>
-            <div class="sidebar__item sidebar__link" data-view="ALL_EVENTS">
+            <a class="sidebar__item sidebar__link" href="?view=EVENTS">
                 <i data-feather="menu"></i>
                 Wszystkie
-            </div>
-            <div class="sidebar__item sidebar__link" data-view="COMING_EVENTS">
+            </a>
+            <a class="sidebar__item sidebar__link" href="?view=EVENTS&filter=coming">
                 <i data-feather="bookmark"></i>
                 Nadchodzące
-            </div>
-            <div class="sidebar__item sidebar__link" data-view="MISSED_EVENTS">
+            </a>
+            <a class="sidebar__item sidebar__link" href="?view=EVENTS&filter=missed">
                 <i data-feather="archive"></i>
                 Minione
-            </div>
-            <div class="sidebar__button sidebar__link" data-view="ADD_EVENT">
+            </a>
+            <a class="sidebar__button sidebar__link" href="?view=ADD_EVENT">
                 <i data-feather="plus"></i>
                 Dodaj wydarzenie
-            </div>
+            </a>
             <div class="sidebar__separator"></div>
-            <div class="sidebar__item sidebar__link" data-view="RULES">
+            <a class="sidebar__item sidebar__link" href="?view=RULES">
                 <i data-feather="book"></i>
                 Regulamin
-            </div>
-            <div class="sidebar__item sidebar__link" data-view="ABOUT">
+            </a>
+            <a class="sidebar__item sidebar__link" href="?view=ABOUT">
                 <i data-feather="help-circle"></i>
                 O nas
-            </div>
+            </a>
         </div>
     </div>
     <div class="main">
         <div class="main__box">
             <div class="main__header" id="app__header">Wszystkie wydarzenia</div>
             <div class="main__content" id="app__container">
-                <div class="VIEW ALL_EVENTS">
+                <div class="VIEW EVENTS">
                     <div class="events__header">
                         <div class="events__header__date">Data</div>
                         <div class="events__header__title">Tytuł</div>
                         <div class="events__header__category">Kategoria</div>
                     </div>
                 </div>
-                <div class="VIEW COMING_EVENTS VIEW__HIDDEN">
-                    XD
+                <div class="VIEW ADD_EVENT VIEW__HIDDEN">
+                    <form>
+                        <label for="add-event__datetime">Data</label>
+                        <input type="datetime-local" name="datetime" id="add-event__datetime">
+                        <br>
+                        <label for="add-event__title">Tytuł</label>
+                        <input type="text" id="add-event__title">
+                        <br>
+                        <select name="category" id="add-event__category">
+                            <option value="0">Test</option>
+                        </select>
+                        <button>Dodaj</button>
+                    </form>
+                </div>
+                <div class="VIEW RULES VIEW__HIDDEN">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nostrum
+                    quasi ipsam, sequi fugit aspernatur quaerat ab id in laboriosam. Aperiam 
+                    quibusdam ullam fuga atque numquam nostrum nemo similique sunt!
+                </div>
+                <div class="VIEW ABOUT VIEW__HIDDEN">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo aliquid commodi 
+                    deserunt architecto autem porro. Dolorem doloremque, id at recusandae 
+                    reiciendis, sint est ducimus libero sit officiis consequuntur, qui maxime.
                 </div>
             </div> 
         </div>

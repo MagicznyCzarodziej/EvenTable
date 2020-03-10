@@ -56,6 +56,9 @@ svg {
     font-size: 1.2rem;
     margin: 0.5rem 0;
     cursor: pointer;
+    display: block;
+    text-decoration: none;
+    color: #222;
     padding: 0.2rem;
 }
 .sidebar__item:hover {
@@ -70,6 +73,8 @@ svg {
     margin: 1.5rem 0;
 }
 .sidebar__button {
+    display: block;
+    text-decoration: none;
     background-color: #65B950;
     color: #FFF;
     padding: 0.7rem 1rem 0.8rem 1rem;

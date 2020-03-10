@@ -20,9 +20,7 @@ window.onload = () => {
 }
 
 const views = {
-    ALL_EVENTS: 'Wszystkie wydarzenia',
-    COMING_EVENTS: 'Nadchodzące wydarzenia',
-    MISSED_EVENTS: 'Minione wydarzenia',
+    EVENTS: 'Wszystkie wydarzenia',
     ADD_EVENT: 'Dodaj wydarzenie',
     RULES: 'Regulamin',
     ABOUT: 'O nas',
@@ -35,9 +33,13 @@ class App {
     container = document.getElementById('app__container');
     categories = [];
     events = [];
+    filter = '';
 
     constructor() {
-        this.createListeners();
+        const urlParams = new URLSearchParams(window.location.search);
+        this.currentView = urlParams.get('view');
+        this.filter = urlParams.get('filter');
+        this.switchView(this.currentView);
         this.loadData();
         feather.replace({ class: 'icon', width: 20, height: 20, stroke: '#A2A2A2' });
     }
@@ -62,7 +64,7 @@ class App {
         this.categories = JSON.parse(window.localStorage.getItem('categories'));
         this.events = JSON.parse(window.localStorage.getItem('events'));
         
-        const eventsBox = Dom.findByClass('ALL_EVENTS')[0];
+        const eventsBox = Dom.findByClass('EVENTS')[0];
 
         this.events.sort((a, b) => {
             const timeA = moment(a.datetime)
@@ -71,7 +73,15 @@ class App {
             else return 1;
         })
 
-        for (const event of this.events) {
+        const now = moment();
+        let filterdEvents;
+        if (!this.filter) filterdEvents = this.events;
+        else filterdEvents = this.events.filter((event) => {
+            if (this.filter == 'coming') return !(moment(event.datetime).isBefore(now));
+            if (this.filter == 'missed') return moment(event.datetime).isBefore(now);
+        });
+        
+        for (const event of filterdEvents) {
             Dom.append(eventsBox, this.buildEventDom(event));
         }
     }
@@ -79,13 +89,6 @@ class App {
     saveData() {
         window.localStorage.setItem('categories', JSON.stringify(this.categories));
         window.localStorage.setItem('events', JSON.stringify(this.events));
-    }
-
-    createListeners() {
-        const sidebarLinks = document.getElementsByClassName('sidebar__link');
-        for (const link of sidebarLinks) {
-            link.addEventListener('click', this.handleLink.bind(this));
-        }
     }
 
     buildEventDom({ datetime, title, categoryId }) {
