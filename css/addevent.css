@@ -1,4 +1,101 @@
-input {
+.add-event {
+  padding: 1rem;
+}
+.add-event form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-event input {
+  font-size: 1rem;
   border: none;
-  border-bottom: 1px solid #324754;
+  border-bottom: 1px solid #D9DDE3;
+  width: 100%;
+}
+
+.add-event__datetime {
+  cursor: text;
+}
+
+.add-event__title {
+  margin-top: 1rem;
+}
+.add-event__categories__label {
+  margin: 1rem 0 0.2rem 0;
+  color: #606368;
+}
+
+.add-event__categories {
+  border: 1px solid #D9DDE3;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.category {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+}
+
+.category:hover {
+  background-color: #f1f5f7;
+}
+
+.category.selected {
+  background-color: #D9DDE3;
+}
+
+.category input[type="color"] {
+  border: none;
+  background: none;
+  padding-top: 0.2rem;
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+}
+
+input[type="color"]::-webkit-color-swatch:hover {
+  border: 1px solid #D9DDE3;
+}
+
+.add-event__categories__new {
+  padding: 0.2rem 0.5rem;
+  border-top: 1px solid #D9DDE3;
+}
+
+.add-event__categories__new svg {
+  position: relative;
+  top: 3px;
+}
+
+.add-event__categories__new input {
+  border: none;
+  width: initial;
+}
+
+
+.add-event__save {
+  background: none;
+  margin-top: 1.2rem;
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border: none;
+  background-color: #65B950;
+  color: #FFF;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-event__save:hover {
+  background-color: #5ba04a;
 }

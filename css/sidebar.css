@@ -1,3 +1,8 @@
+.sidebar svg {
+  margin-right: 0.3rem;
+  position: relative;
+  top: 1px;
+}
 .sidebar {
   grid-area: sidebar;
   color: #222;

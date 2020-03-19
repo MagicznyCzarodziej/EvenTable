@@ -22,11 +22,6 @@ body {
         "main";
     background-color: #F5F6F8;
 }
-svg {
-    margin-right: 0.3rem;
-    position: relative;
-    top: 1px;
-}
 
 .main {
     grid-area: main;
@@ -50,7 +45,7 @@ svg {
 
 
 .VIEW__HIDDEN {
-    display: none;
+    display: none !important;
 }
 
 @media (min-width: 950px) {

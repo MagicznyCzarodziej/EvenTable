@@ -20,10 +20,22 @@ window.onload = () => {
 }
 
 const views = {
-    EVENTS: 'Wszystkie wydarzenia',
-    ADD_EVENT: 'Dodaj wydarzenie',
-    RULES: 'Regulamin',
-    ABOUT: 'O nas',
+    EVENTS: {
+        className: 'events',
+        header: 'Wszystkie wydarzenia',
+    },
+    ADD_EVENT: {
+        className: 'add-event',
+        header: 'Dodaj wydarzenie',
+    },
+    RULES: {
+        className: 'rules',
+        header: 'Regulamin',
+    },
+    ABOUT: {
+        className: 'about',
+        header: 'O nas',
+    },
 }
 
 
@@ -37,11 +49,17 @@ class App {
 
     constructor() {
         const urlParams = new URLSearchParams(window.location.search);
-        this.currentView = urlParams.get('view');
+        const view = urlParams.get('view') || 'EVENTS';
         this.filter = urlParams.get('filter');
-        this.switchView(this.currentView);
+        this.switchView(view);
         this.loadData();
         feather.replace({ class: 'icon', width: 20, height: 20, stroke: '#A2A2A2' });
+
+        const addEventButton = Dom.findByClass('add-event__save')[0];
+        addEventButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            this.addEvent();
+        });
     }
 
     handleLink({ target }) {
@@ -49,22 +67,25 @@ class App {
     }
 
     switchView(view) {
-        this.currentView = view;
-        this.header.textContent = views[this.currentView];
+        this.currentView = views[view];
+        if (!this.filter) this.header.textContent = this.currentView.header;
+        else if (this.filter == 'coming') this.header.textContent = 'Nadchodzące wydarzenia';
+        else if (this.filter == 'missed') this.header.textContent = 'Minione wydarzenia';
 
         const viewsDivs = this.container.getElementsByClassName('VIEW');
         
         for (const view of viewsDivs) {
-            if (view.classList.contains(this.currentView)) view.classList.remove('VIEW__HIDDEN');
-            else view.classList.add('VIEW__HIDDEN');
+            if (view.classList.contains(this.currentView.className)) {
+                view.classList.remove('VIEW__HIDDEN');
+            } else view.classList.add('VIEW__HIDDEN');
         }
     }
 
     loadData() {
         this.categories = JSON.parse(window.localStorage.getItem('categories'));
-        this.events = JSON.parse(window.localStorage.getItem('events'));
+        this.events = JSON.parse(window.localStorage.getItem('events')) || [];
         
-        const eventsBox = Dom.findByClass('EVENTS')[0];
+        const eventsBox = Dom.findByClass(views.EVENTS.className)[0];
 
         this.events.sort((a, b) => {
             const timeA = moment(a.datetime)
@@ -84,6 +105,23 @@ class App {
         for (const event of filterdEvents) {
             Dom.append(eventsBox, this.buildEventDom(event));
         }
+
+        // Categories
+        const categoriesBox = Dom.findByClass('add-event__categories__list')[0];
+
+        for (const category of this.categories) {
+            const categoryDom = `
+                <div class="category" data-id=${category.id}>
+                <div class="category__name">${category.name}</div>
+                <div class="category__color">
+                    <input type="color" name="color" value="${category.color}">
+                    </div>
+                </div>
+            `;
+            Dom.append(categoriesBox, categoryDom);
+        }
+
+        categoriesBox.addEventListener('click', selectCategory);
     }
 
     saveData() {
@@ -127,4 +165,32 @@ class App {
             </div>
         `;
     }
+
+    addEvent() {
+        const datetime = Dom.findByClass('add-event__datetime')[0].value;
+        const title = Dom.findByClass('add-event__title')[0].value;
+        const categories = Array.from(Dom.findByClass('category'));
+        const category = categories.find((category) => {
+            return category.classList.contains('selected');
+        });
+        if(!category) return;
+        const categoryId = parseInt(category.dataset.id);
+        
+        this.events.push({
+            datetime,
+            title,
+            categoryId,
+        });
+        this.saveData();
+    }
+}
+
+function selectCategory(event) {
+    const target = event.target.closest('.category');
+    const categoryId = target.dataset['id'];
+    if (!categoryId) return;
+
+    const categoriesDivs = Dom.findByClass('category');
+    for (const category of categoriesDivs) category.classList.remove('selected');
+    target.classList.add('selected');
 }

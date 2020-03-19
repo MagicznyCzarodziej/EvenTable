@@ -49,35 +49,36 @@
     </div>
     <div class="main">
         <div class="main__box">
-            <div class="main__header" id="app__header">Wszystkie wydarzenia</div>
+            <div class="main__header" id="app__header"></div>
             <div class="main__content" id="app__container">
-                <div class="VIEW EVENTS">
+                <div class="VIEW events">
                     <div class="events__header">
                         <div class="events__header__date">Data</div>
                         <div class="events__header__title">Tytuł</div>
                         <div class="events__header__category">Kategoria</div>
                     </div>
                 </div>
-                <div class="VIEW ADD_EVENT VIEW__HIDDEN">
+                <div class="VIEW add-event VIEW__HIDDEN">
                     <form>
-                        <label for="add-event__datetime">Data</label>
-                        <input type="datetime-local" name="datetime" id="add-event__datetime">
-                        <br>
-                        <label for="add-event__title">Tytuł</label>
-                        <input type="text" id="add-event__title">
-                        <br>
-                        <select name="category" id="add-event__category">
-                            <option value="0">Test</option>
-                        </select>
-                        <button>Dodaj</button>
+                        <input type="datetime-local" name="datetime" class="add-event__datetime">
+                        <input type="text" class="add-event__title" placeholder="Nazwa wydarzenia">
+                        <div class="add-event__categories__label">Kategoria</div>
+                        <div class="add-event__categories">
+                            <div class="add-event__categories__list"></div>
+                            <div class="add-event__categories__new">
+                                <i data-feather="plus"></i>
+                                <input type="text" placeholder="Nowa kategoria...">
+                            </div>
+                        </div>
+                        <button class="add-event__save">Zapisz</button>
                     </form>
                 </div>
-                <div class="VIEW RULES VIEW__HIDDEN">
+                <div class="VIEW rules VIEW__HIDDEN">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nostrum
                     quasi ipsam, sequi fugit aspernatur quaerat ab id in laboriosam. Aperiam 
                     quibusdam ullam fuga atque numquam nostrum nemo similique sunt!
                 </div>
-                <div class="VIEW ABOUT VIEW__HIDDEN">
+                <div class="VIEW about VIEW__HIDDEN">
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo aliquid commodi 
                     deserunt architecto autem porro. Dolorem doloremque, id at recusandae 
                     reiciendis, sint est ducimus libero sit officiis consequuntur, qui maxime.
