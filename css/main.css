@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400&display=swap&subset=latin-ext');
+
+* {
+    box-sizing: border-box;
+}
+html {
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+        "sidebar"
+        "main";
+    background-color: #F5F6F8;
+}
+svg {
+    margin-right: 0.3rem;
+    position: relative;
+    top: 1px;
+}
+
+.main {
+    grid-area: main;
+    padding: 0 1rem;
+    margin: 2rem 0 0.5rem;
+}
+.main__box {
+    background-color: #FFF;
+    border: solid 1px #D9DDE3; 
+    border-radius: 4px;
+}
+.main__header {
+    background-color: #324754;
+    font-size: 1rem;
+    color: #FFF;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+
+.VIEW__HIDDEN {
+    display: none;
+}
+
+@media (min-width: 950px) {
+    body {
+        grid-template-columns: 1fr 15rem auto 1fr;
+        grid-template-areas: ". sidebar main .";
+    }
+    .main__header {
+        font-size: 1.5rem;
+    }
+}
