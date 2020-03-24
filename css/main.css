@@ -43,11 +43,6 @@ body {
     border-top-right-radius: 3px;
 }
 
-
-.VIEW__HIDDEN {
-    display: none !important;
-}
-
 @media (min-width: 950px) {
     body {
         grid-template-columns: 1fr 15rem auto 1fr;

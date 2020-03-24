@@ -66,10 +66,9 @@ input[type="color"]::-webkit-color-swatch {
 input[type="color"]::-webkit-color-swatch:hover {
   border: 1px solid #D9DDE3;
 }
-
 .add-event__categories__new {
-  padding: 0.2rem 0.5rem;
   border-top: 1px solid #D9DDE3;
+  grid-template-columns: auto 1fr auto;
 }
 
 .add-event__categories__new svg {
@@ -77,13 +76,15 @@ input[type="color"]::-webkit-color-swatch:hover {
   top: 3px;
 }
 
-.add-event__categories__new input {
+.add-event__categories__new input[type="text"] {
+  margin-left: 0.3rem;
+  padding-left: 0.2rem;
   border: none;
   width: initial;
 }
 
-
 .add-event__save {
+  transition: background-color 0.3s;
   background: none;
   margin-top: 1.2rem;
   width: 100%;
