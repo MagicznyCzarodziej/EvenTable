@@ -1,3 +1,5 @@
+import Error404View from './views/Error404.js';
+
 export default class ViewManager {
   views = [];
   constructor(views) {
@@ -14,6 +16,8 @@ export default class ViewManager {
       return view.name === viewName;
     });
     
+    if (!this.currentView) this.currentView = new Error404View();
+
     this.setHeader(this.currentView.header);
     this.currentView.render();
   }

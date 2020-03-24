@@ -43,6 +43,10 @@ body {
     border-top-right-radius: 3px;
 }
 
+.error404 {
+    padding: 1rem;
+}
+
 @media (min-width: 950px) {
     body {
         grid-template-columns: 1fr 15rem auto 1fr;
