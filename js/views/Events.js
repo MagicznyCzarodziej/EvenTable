@@ -36,12 +36,12 @@ export default class EventsView extends View {
 
     const html = `
       <div class="VIEW events">
-        <div class="events__header">
+        <div class="events__header" ${eventsHtml ? '' : 'style="display: none;"'}>
           <div class="events__header__date">Data</div>
           <div class="events__header__title">Tytuł</div>
           <div class="events__header__category">Kategoria</div>
         </div>
-        ${eventsHtml}
+        ${eventsHtml ? eventsHtml : '<div class="events__no-events">Nie masz żadnych wydarzeń</div>'}
       </div>
     `;
     

@@ -7,7 +7,7 @@ export default class AddEventView extends View {
       header: 'Dodaj wydarzenie',
     });
 
-    this.categories = JSON.parse(window.localStorage.getItem('categories'));
+    this.categories = JSON.parse(window.localStorage.getItem('categories')) || [];
     this.events = JSON.parse(window.localStorage.getItem('events')) || [];
   }
 

@@ -7,6 +7,10 @@
   font-weight: bold;
   padding: 0.5rem 2rem;
 }
+.events__no-events {
+  padding: 1rem;
+  text-align: center;
+}
 .event {
   display: flex;
   flex-direction: column;
