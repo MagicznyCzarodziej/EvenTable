@@ -105,7 +105,8 @@ export default class AddEventView extends View {
   }
 
   generateNewCategory() {
-    const id = this.categories.length;
+    const categoriesLength = this.categories.length;
+    const id = categoriesLength ? this.categories[categoriesLength-1] : 0;
     const name = Dom.id('add-event__categories__new__name__input').value;
     const color = Dom.id('add-event__categories__new__color__input').value;
   
