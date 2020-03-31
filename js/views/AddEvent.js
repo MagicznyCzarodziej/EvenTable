@@ -28,9 +28,10 @@ export default class AddEventView extends View {
 
     const html = `
       <div class="VIEW add-event">
-      <form>
-        <input type="datetime-local" name="datetime" class="add-event__datetime">
-        <input type="text" class="add-event__title" placeholder="Nazwa wydarzenia">
+      <div class="add-event__error"></div>
+      <form name="add-event__form">
+        <input type="datetime-local" name="datetime" class="add-event__datetime" required>
+        <input type="text" class="add-event__title" placeholder="Nazwa wydarzenia" required>
         <div class="add-event__categories__label">Kategoria</div>
         <div class="add-event__categories">
           <div class="add-event__categories__list">
@@ -39,9 +40,12 @@ export default class AddEventView extends View {
           <div class="add-event__categories__new category">
             <i data-feather="plus"></i>
             <div class="add-event__categories__new__name">
-              <input type="text"
+              <input
+                type="text"
                 id="add-event__categories__new__name__input"
                 placeholder="Nowa kategoria..."
+                minlength="3"
+                maxlength="20"
               >
             </div>
             <div class="add-event__categories__new__color">
@@ -70,7 +74,8 @@ export default class AddEventView extends View {
     });
     newCategoryInput.addEventListener('keyup', (event) => {
       if (event.keyCode === 13) {
-        Dom.append(categoriesBox, this.generateNewCategory());
+        const newCategory = this.generateNewCategory();
+        if (newCategory) Dom.append(categoriesBox, newCategory);
       }
     });
   }
@@ -87,12 +92,17 @@ export default class AddEventView extends View {
 
   addEvent() {
     const datetime = Dom.findByClass('add-event__datetime')[0].value;
+    if (!datetime) return this.showError('Wybierz datę i czas!')
+    
     const title = Dom.findByClass('add-event__title')[0].value;
+    if (!title) return this.showError('Podaj nazwę wydarzenia!')
+
     const categories = Array.from(Dom.findByClass('category'));
     const category = categories.find((category) => {
       return category.classList.contains('selected');
     });
-    if(!category) return;
+    if(!category) return this.showError('Wybierz kategorię!')
+
     const categoryId = parseInt(category.dataset.id);
     
     this.events.push({
@@ -107,9 +117,15 @@ export default class AddEventView extends View {
   generateNewCategory() {
     const categoriesLength = this.categories.length;
     const id = categoriesLength ? this.categories[categoriesLength-1] : 0;
-    const name = Dom.id('add-event__categories__new__name__input').value;
+    const nameInput = Dom.id('add-event__categories__new__name__input');
+    const name = nameInput.value;
     const color = Dom.id('add-event__categories__new__color__input').value;
-  
+    
+    if(name.length < 3 || name.length > 20) {
+      this.showError('Podaj poprawną nazwę kategorii!');
+      return null;
+    }
+    nameInput.value = '';
     this.categories.push({ id, name, color });
 
     const html = `
@@ -121,6 +137,13 @@ export default class AddEventView extends View {
       </div>
     `;
     return html;
+  }
+
+  showError(error) {
+    const errorDiv = Dom.findByClass('add-event__error')[0];
+
+    errorDiv.style.display = 'block';
+    errorDiv.textContent = error;
   }
 }
 
