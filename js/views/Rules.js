@@ -9,9 +9,15 @@ export default class RulesView extends View {
   }
   render() {
     super.render(`
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nostrum
-      quasi ipsam, sequi fugit aspernatur quaerat ab id in laboriosam. Aperiam 
-      quibusdam ullam fuga atque numquam nostrum nemo similique sunt!
+      <div class="VIEW rules">
+        <ol>
+          <li>Jedz śniadania bo smaczne są i zdrowe.</li>
+          <li>Don't even blink.</li>
+          <li>Pogłaskaj każdego spotkanego kota.</li>
+          <li>Zapinaj pasy.</li>
+          <li value="32">Enjoy the little things.</li>
+        </ol>
+      </div>
     `);
   }
 }
