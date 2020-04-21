@@ -47,12 +47,15 @@ body {
     padding: 1rem;
 }
 
-@media (min-width: 950px) {
+@media (min-width: 1150px) {
     body {
         grid-template-columns: 1fr 15rem auto 1fr;
         grid-template-areas: ". sidebar main .";
     }
     .main__header {
         font-size: 1.5rem;
+    }
+    .main {
+        width: 40rem;
     }
 }
