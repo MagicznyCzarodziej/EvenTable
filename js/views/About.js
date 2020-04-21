@@ -9,9 +9,9 @@ export default class AboutView extends View {
   }
   render() {
     super.render(`
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo aliquid commodi 
-      deserunt architecto autem porro. Dolorem doloremque, id at recusandae 
-      reiciendis, sint est ducimus libero sit officiis consequuntur, qui maxime.
+      <div class="VIEW about">
+        Tutaj będą jakieś animacje i inne cuda
+      </div>
     `);
   }
 }
