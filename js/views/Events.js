@@ -44,8 +44,18 @@ export default class EventsView extends View {
         ${eventsHtml ? eventsHtml : '<div class="events__no-events">Nie masz żadnych wydarzeń</div>'}
       </div>
     `;
-    
+
     super.render(html);
+
+    const deleteButtons = Dom.findByClass('event__delete');
+    for (const btn of deleteButtons) {
+      btn.addEventListener('click', (event) => {
+        const eventDiv = event.currentTarget.parentNode;
+        const id = eventDiv.dataset.id;
+        deleteEvent.call(this, id);
+        window.location.reload();
+      });
+    }
   }
 
   filterEvents(events, filter) {
@@ -56,7 +66,7 @@ export default class EventsView extends View {
     });
   }
 
-  buildEventDom({ datetime, title, categoryId }) {
+  buildEventDom({ id, datetime, title, categoryId }) {
     const date = moment(datetime);
     const now = moment();
     const yesterday = moment().subtract(1, 'day');
@@ -75,8 +85,8 @@ export default class EventsView extends View {
     });
 
     return `
-      <div class="event">
-        <div class="event__datetime">
+      <div class="event" data-id=${id}>
+        <div class="event__datetime" title="${datetime}">
           <div class="event__date">${dateString}</div>
           <div class="event__time">${timeString}</div>
         </div>
@@ -88,10 +98,20 @@ export default class EventsView extends View {
             ${category.name}
           </div>
         </div>
-        <div class="event__delete">
+        <div class="event__delete" title="Usuń wydarzenie">
           <i data-feather="x"></i>
         </div>
       </div>
     `;
   }
+}
+
+function deleteEvent(id) {
+  console.log(id);
+  console.log(this);
+  
+  const eventIndex = this.events.findIndex((event) => event.id == id);
+  this.events.splice(eventIndex, 1);
+  
+  this.saveData();
 }

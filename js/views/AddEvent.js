@@ -104,8 +104,15 @@ export default class AddEventView extends View {
     if(!category) return this.showError('Wybierz kategorię!')
 
     const categoryId = parseInt(category.dataset.id);
-    
+
+    let id = Number(localStorage.getItem('nextId'));
+    if (isNaN(id)) {
+      id = 0;
+      localStorage.setItem('nextId', 1);
+    } else localStorage.setItem('nextId', id + 1);
+
     this.events.push({
+      id,
       datetime,
       title,
       categoryId,
